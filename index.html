@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Spark Studios | Catálogo Profissional</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <style>
+        /* AQUI VAI TODO O SEU CSS QUE JÁ CRIAMOS */
+        :root { --bg: #0A0510; --surface: #130a1c; --primary: #7C3AED; --secondary: #10B981; --text: #F3F4F6; --text-muted: #9CA3AF; --border: rgba(255,255,255,0.06); --card-bg: #1a1126; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; }
+        .app-container { display: flex; min-height: 100vh; }
+        .sidebar { width: 260px; background: var(--surface); padding: 24px; position: sticky; top: 0; height: 100vh; border-right: 1px solid var(--border); }
+        .main-content { flex: 1; padding: 30px; }
+        
+        .grid-container { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); 
+            gap: 24px; 
+        }
+
+        .card { 
+            background: var(--card-bg); border-radius: 16px; overflow: hidden; position: relative; 
+            border: 1px solid var(--border); transition: 0.3s; cursor: pointer;
+        }
+        .card:hover { transform: translateY(-8px); border-color: var(--primary); }
+        .card-img-wrap { aspect-ratio: 3 / 4; overflow: hidden; }
+        .card-img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .card-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px; background: linear-gradient(to top, var(--bg) 0%, transparent 100%); }
+        .card-title { font-size: 16px; font-weight: 600; color: #fff; }
+
+        /* Estilos do Modal e Wishlist (os mesmos do código anterior) */
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: none; z-index: 5000; align-items: center; justify-content: center; }
+        .modal-content { background: var(--surface); width: 90%; max-width: 800px; border-radius: 16px; display: flex; position: relative; }
+        
+        @media (max-width: 768px) {
+            .app-container { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; position: relative; }
+            .modal-content { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    <aside class="sidebar">
+        <div style="font-family: 'Poppins'; font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 30px;">
+            <i class="fa-solid fa-bolt" style="color:var(--primary)"></i> Spark Studios
+        </div>
+        <nav>
+            <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 15px;">Coleções</div>
+            <div class="nav-item" style="color: var(--primary); font-weight: 600; margin-bottom: 10px; cursor: pointer;">Ver Todos</div>
+            </nav>
+    </aside>
+
+    <main class="main-content">
+        <div class="grid-container">
+            <article class="card" onclick="openModal('Nome do Produto', 'url-da-imagem.jpg')">
+                <div class="card-img-wrap">
+                    <img src="https://via.placeholder.com/300x400" class="card-img">
+                </div>
+                <div class="card-overlay">
+                    <h3 class="card-title">Produto Exemplo 01</h3>
+                    <p style="color: var(--primary); font-size: 12px;">ADICIONAR</p>
+                </div>
+            </article>
+        </div>
+    </main>
+</div>
+
+</body>
+</html>
